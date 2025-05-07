@@ -1,0 +1,37 @@
+#chessboard{
+    display: grid;
+    grid-template-rows: 30px repeat(8, 60px) 30px;
+    grid-template-columns: 30px repeat(8, 60px) 30px;
+    gap: 0;
+}
+
+.row{
+    display: flex;
+}
+
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    background-color: #607d8b;
+}
+
+.label{
+    background-color: #607d8b;
+    color: white;
+}
+
+.white{
+    background-color: wheat;
+}
+
+.black{
+    background-color: #607d8b;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
