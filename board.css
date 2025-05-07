@@ -1,7 +1,7 @@
 #chessboard{
     display: grid;
-    grid-template-rows: 30px repeat(8, 60px) 30px;
-    grid-template-columns: 30px repeat(8, 60px) 30px;
+    grid-template-rows: 45px repeat(8, 90px) 45px;
+    grid-template-columns: 45px repeat(8, 90px) 45px;
     gap: 0;
 }
 
@@ -14,11 +14,11 @@
     justify-content: center;
     align-items: center;
     font-weight: bold;
-    background-color: #607d8b;
+    background-color: #455A64;
 }
 
 .label{
-    background-color: #607d8b;
+    background-color: #455A64;
     color: white;
 }
 
