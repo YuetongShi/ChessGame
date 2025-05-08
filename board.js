@@ -59,3 +59,5 @@ function loadGame(){
             resetPiece();
     });
 }
+
+loadGame();
