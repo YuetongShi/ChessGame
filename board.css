@@ -22,6 +22,10 @@
     color: white;
 }
 
+.label:hover{
+    cursor: default;
+}
+
 .white{
     background-color: wheat;
 }
