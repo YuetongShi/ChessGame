@@ -1,1 +1,1 @@
-Chess game in javascript
+# Chess game in javascript
