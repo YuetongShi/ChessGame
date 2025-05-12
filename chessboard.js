@@ -23,11 +23,8 @@ export class chessboard{
     }
 }
 
-function isValidSquare(letter, number){
+export function isValidSquare(letter, number){
     if (letter <= 0 || letter > 8)
         return false;
-    else if (number <= 0 || letter > 8)
-        return false;
-    else
-        return true;
+    else return !(number <= 0 || letter > 8);
 }
