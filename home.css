@@ -1,0 +1,39 @@
+.popup-region{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.hidden{
+    display: none;
+}
+
+.setting-popup{
+    width: 600px;
+    height: 600px;
+    background-color: #455A64;
+    border-radius: 50%;
+    position: relative;
+    color: wheat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+body{
+    background-color: wheat;
+    font-family: "Comic Sans MS", serif;
+}
+
+button{
+    font-family: "Comic Sans MS", sans-serif;
+    cursor: pointer;
+}
