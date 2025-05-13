@@ -20,6 +20,9 @@ export class chessboard{
 
         this.squares[3][0] = new Queen(Color.white, 4, 1, this); //D1
         this.squares[3][7] = new Queen(Color.black, 4, 8, this); //D8
+
+        this.squares[4][0] = new King(Color.white, 5, 1, this) //E1
+        this.squares[4][7] = new King(Color.black, 5, 8, this) //E8
     }
 
     isValidSquare(letter, number){
