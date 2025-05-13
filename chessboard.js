@@ -1,25 +1,39 @@
-import {King, Queen, Rook, Bishop, Knight, Pawn} from "./piece.js";
+import {Color, Queen, Rook} from "./piece.js";
 
 export class chessboard{
 
     constructor() {
-        this.checks = null;
+        this.squares = [[],[],[],[],[],[],[],[]]; //element with type Piece
+        for (let item in this.squares){
+            for (let i = 0; i < 8; i++){
+                item.push(null);
+            }
+        }
     }
 
-    setGame(){
+    fillBoard(){
+        //the function resets all the pieces in a board for game mode
+        this.squares[0][0] = new Rook(Color.white, 1, 1, this); //A1
+        this.squares[0][7] = new Rook(Color.white, 8, 1, this); //H1
+        this.squares[7][0] = new Rook(Color.black, 1, 8, this); //A8
+        this.squares[7][7] = new Rook(Color.black, 8, 8, this); //H8
 
+        this.squares[3][0] = new Queen(Color.white, 4, 1, this); //D1
+        this.squares[3][7] = new Queen(Color.black, 4, 8, this); //D8
     }
 
     isValidSquare(letter, number){
     }
 
     isOccupied(letter, number){
-        return false;
+        return this.squares[letter - 1][number - 1] != null;
     }
 
     getPiece(letter, number){
         if (!this.isOccupied(letter, number))
             throw new Error("No piece at all");
+        else
+            return this.squares[letter - 1][number - 1];
     }
 }
 

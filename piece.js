@@ -1,10 +1,15 @@
 import {chessboard} from "./chessboard";
 
+export const Color = {
+    black: "black",
+    white: "white"
+}
+
 class Piece{
     constructor(color, letter, number, chessboard) {
-        this.color = color; //string, either black or white
-        this.letter = letter; //integer, 1 is A, 2 is B etc.
-        this.number = number; //integer
+        this.color = color; //enum, either black or white
+        this.letter = letter; //integer, 0 is A, 1 is B etc.
+        this.number = number; //integer, the index will be number + 1, for instance, a1 has letter = 0 and number = 0
         this.board = chessboard //chessboard, remove if unused
     }
 
