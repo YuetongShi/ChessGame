@@ -26,7 +26,7 @@ class Piece{
         return false;
     }
 
-    pieceOut(){
+    removePiece(){
         this.letter = -1;
         this.number = -1;
     }
@@ -92,6 +92,8 @@ export class Pawn extends Piece{
     }
 
     promotion(target){
-
+        //target is a piece
+        this.board.set(this.letter, this.number, target);
+        this.removePiece();
     }
 }

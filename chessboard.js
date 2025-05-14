@@ -33,10 +33,6 @@ export class chessboard{
         this.squares[6][0] = new Knight(Color.white, 7, 1, this) //G1
         this.squares[1][7] = new Knight(Color.black, 2, 8, this) //B8
         this.squares[6][7] = new Knight(Color.black, 7, 8, this) //G8
-
-    }
-
-    isValidSquare(letter, number){
     }
 
     isOccupied(letter, number){
