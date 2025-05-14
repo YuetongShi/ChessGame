@@ -1,4 +1,4 @@
-import {Color, King, Queen, Rook} from "./piece.js";
+import {Bishop, Color, King, Knight, Queen, Rook} from "./piece.js";
 
 export class chessboard{
 
@@ -23,6 +23,17 @@ export class chessboard{
 
         this.squares[4][0] = new King(Color.white, 5, 1, this) //E1
         this.squares[4][7] = new King(Color.black, 5, 8, this) //E8
+
+        this.squares[2][0] = new Bishop(Color.white, 3, 1, this) //C1
+        this.squares[5][0] = new Bishop(Color.white, 6, 1, this) //F1
+        this.squares[2][7] = new Bishop(Color.black, 3, 8, this) //C8
+        this.squares[5][7] = new Bishop(Color.black, 6, 8, this) //F8
+
+        this.squares[1][0] = new Knight(Color.white, 2, 1, this) //B1
+        this.squares[6][0] = new Knight(Color.white, 7, 1, this) //G1
+        this.squares[1][7] = new Knight(Color.black, 2, 8, this) //B8
+        this.squares[6][7] = new Knight(Color.black, 7, 8, this) //G8
+
     }
 
     isValidSquare(letter, number){
