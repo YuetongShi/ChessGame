@@ -1,4 +1,4 @@
-import {Color, Queen, Rook} from "./piece.js";
+import {Color, King, Queen, Rook} from "./piece.js";
 
 export class chessboard{
 
@@ -32,11 +32,13 @@ export class chessboard{
         return this.squares[letter - 1][number - 1] != null;
     }
 
-    getPiece(letter, number){
-        if (!this.isOccupied(letter, number))
-            throw new Error("No piece at all");
-        else
-            return this.squares[letter - 1][number - 1];
+    get(letter, number){
+    return this.squares[letter - 1][number - 1];
+    }
+
+    set(letter, number, piece){
+    //piece has type Piece
+    this.squares[letter][number] = piece;
     }
 }
 
@@ -46,11 +48,5 @@ export function isValidSquare(letter, number){
     else return !(number <= 0 || letter > 8);
 }
 
-export function get(letter, number){
-    return this.squares[letter - 1][number - 1];
-}
 
-export function set(letter, number, piece){
-    //piece has type Piece
-    this.squares[letter][number] = piece;
-}
+
