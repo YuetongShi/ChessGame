@@ -45,3 +45,12 @@ export function isValidSquare(letter, number){
         return false;
     else return !(number <= 0 || letter > 8);
 }
+
+export function get(letter, number){
+    return this.squares[letter - 1][number - 1];
+}
+
+export function set(letter, number, piece){
+    //piece has type Piece
+    this.squares[letter][number] = piece;
+}

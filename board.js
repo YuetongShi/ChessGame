@@ -45,6 +45,11 @@ function createBoard(){
     }
 }
 
+function toGridPosition(letter, number){
+    //returns the position axis on the board grid
+    return [letter, 9 - number];
+}
+
 function resetPiece(){
 
 }
