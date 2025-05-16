@@ -14,10 +14,12 @@ class Piece{
     }
 
     canMove(destLetter, destNumber){
+        //piece.canMove only checks whether a piece can go there, use game.isValidMove to check backgrounds
         throw new Error("This function is used only for subclasses")
     }
 
     moveTo(destLetter, destNumber){
+        //make sure the move is valid beforehand!
         if (this.canMove(destLetter,destNumber)) {
             this.letter = destLetter;
             this.number = destNumber;
@@ -38,7 +40,7 @@ export class King extends Piece{
     }
 
     canMove(destLetter, destNumber) {
-        super.canMove(destLetter, destNumber);
+        return (Math.abs(this.letter - destLetter) <= 1 && Math.abs(this.number - destNumber) <= 1)
     }
 }
 
@@ -48,7 +50,10 @@ export class Queen extends Piece{
     }
 
     canMove(destLetter, destNumber) {
-        super.canMove(destLetter, destNumber);
+        if (Math.abs(this.letter - destLetter) === Math.abs(this.number  - destNumber))
+            return true;
+        else
+            return (this.letter === destLetter || this.number === destNumber);
     }
 }
 
@@ -58,7 +63,7 @@ export class Rook extends Piece{
     }
 
     canMove(destLetter, destNumber) {
-        super.canMove(destLetter, destNumber);
+        return (this.letter === destLetter || this.number === destNumber);
     }
 }
 
@@ -68,7 +73,7 @@ export class Bishop extends Piece{
     }
 
     canMove(destLetter, destNumber) {
-        super.canMove(destLetter, destNumber);
+        return (Math.abs(this.letter - destLetter) === Math.abs(this.number  - destNumber));
     }
 }
 
