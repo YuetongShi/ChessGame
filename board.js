@@ -1,9 +1,9 @@
 const board = document.getElementById('chessboard');
+const letters = [' ', 'A', 'B', 'C','D','E','F','G','H',' '];
 
 function createBoard(){
     board.innerHTML = '';
 
-    const letters = [' ', 'A', 'B', 'C','D','E','F','G','H',' '];
     for(let row = 0; row <= 9; row++){
         for (let col = 0; col <= 9; col++){
             const cell = document.createElement('div')
@@ -45,13 +45,118 @@ function createBoard(){
     }
 }
 
-function toGridPosition(letter, number){
-    //returns the position axis on the board grid
-    return [letter, 9 - number];
+function toGridDataset(letter, number){
+    //parameters are backend numeric values, returned values are datasets of cell
+    return [letters[letter], number.toString()];
 }
 
 function resetPiece(){
+    const cells = document.querySelectorAll('.cell');
+    cells.forEach(cell =>{
+        if ((cell.dataset.col === 'A' || cell.dataset.col === 'H') && cell.dataset.row === '1' ) {
+            const img = document.createElement('img');
+            img.src = 'imgs/w_rook.png';
+            img.style.width = '75%';
+            img.style.height = '75%';
+            cell.appendChild(img);
+        }
 
+        else if ((cell.dataset.col === 'A' || cell.dataset.col === 'H') && cell.dataset.row === '8' ) {
+            const img = document.createElement('img');
+            img.src = 'imgs/b_rook.png';
+            img.style.width = '75%';
+            img.style.height = '75%';
+            cell.appendChild(img);
+        }
+
+        else if ((cell.dataset.col === 'B' || cell.dataset.col === 'G') && cell.dataset.row === '1' ) {
+            const img = document.createElement('img');
+            img.src = 'imgs/w_knight.png';
+            img.style.width = '75%';
+            img.style.height = '75%';
+            cell.appendChild(img);
+        }
+
+        else if ((cell.dataset.col === 'B' || cell.dataset.col === 'G') && cell.dataset.row === '8' ) {
+            const img = document.createElement('img');
+            img.src = 'imgs/b_knight.png';
+            img.style.width = '75%';
+            img.style.height = '75%';
+            cell.appendChild(img);
+        }
+
+        else if ((cell.dataset.col === 'C' || cell.dataset.col === 'F') && cell.dataset.row === '1' ) {
+            const img = document.createElement('img');
+            img.src = 'imgs/w_bishop.png';
+            img.style.width = '75%';
+            img.style.height = '75%';
+            cell.appendChild(img);
+        }
+
+        else if ((cell.dataset.col === 'C' || cell.dataset.col === 'F') && cell.dataset.row === '8' ) {
+            const img = document.createElement('img');
+            img.src = 'imgs/b_bishop.png';
+            img.style.width = '75%';
+            img.style.height = '75%';
+            cell.appendChild(img);
+        }
+
+        else if (cell.dataset.row === '2' ) {
+            const img = document.createElement('img');
+            img.src = 'imgs/w_pawn.png';
+            img.style.width = '75%';
+            img.style.height = '75%';
+            cell.appendChild(img);
+        }
+
+        else if (cell.dataset.row === '7' ) {
+            const img = document.createElement('img');
+            img.src = 'imgs/b_pawn.png';
+            img.style.width = '75%';
+            img.style.height = '75%';
+            cell.appendChild(img);
+        }
+
+        else if ((cell.dataset.col === 'D') && cell.dataset.row === '1' ) {
+            const img = document.createElement('img');
+            img.src = 'imgs/w_queen.png';
+            img.style.width = '75%';
+            img.style.height = '75%';
+            img.draggable = true;
+            img.id = 'queenD1'
+            cell.appendChild(img);
+        }
+
+        else if ((cell.dataset.col === 'D') && cell.dataset.row === '8' ) {
+            const img = document.createElement('img');
+            img.src = 'imgs/b_queen.png';
+            img.style.width = '75%';
+            img.style.height = '75%';
+            img.draggable = true;
+            img.id = 'queenD8'
+            cell.appendChild(img);
+        }
+
+        else if ((cell.dataset.col === 'E') && cell.dataset.row === '1' ) {
+            const img = document.createElement('img');
+            img.src = 'imgs/w_king.png';
+            img.style.width = '75%';
+            img.style.height = '75%';
+            img.draggable = true;
+            img.id = 'kingE1'
+            cell.appendChild(img);
+        }
+
+        else if ((cell.dataset.col === 'E') && cell.dataset.row === '8' ) {
+            const img = document.createElement('img');
+            img.src = 'imgs/b_king.png';
+            img.style.width = '75%';
+            img.style.height = '75%';
+            img.draggable = true;
+            img.id = 'kingE8'
+            cell.appendChild(img);
+        }
+    });
 }
 
 function loadGame(){
