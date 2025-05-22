@@ -50,111 +50,72 @@ function toGridDataset(letter, number){
     return [letters[letter], number.toString()];
 }
 
+function addPiece(pieceName, colorCap, col, row) {
+    //the function adds a piece at the input grid axis according to dataset, color is a single letter here
+    const selector = `.cell[data-col='${col}'][data-row='${row}']`;
+    const cell = document.querySelector(selector);
+
+    if (cell) {
+        const img = document.createElement('img');
+        img.src = `imgs/${colorCap}_${pieceName}.png`;
+        img.style.width = '75%';
+        img.style.height = '75%';
+        img.draggable = true;
+        img.id = `${colorCap}_${pieceName}_${col}${row}`;
+        cell.appendChild(img);
+    }
+}
+
 function resetPiece(){
-    const cells = document.querySelectorAll('.cell');
-    cells.forEach(cell =>{
-        if ((cell.dataset.col === 'A' || cell.dataset.col === 'H') && cell.dataset.row === '1' ) {
-            const img = document.createElement('img');
-            img.src = 'imgs/w_rook.png';
-            img.style.width = '75%';
-            img.style.height = '75%';
-            cell.appendChild(img);
-        }
+    const pieces = [
+        ['rook', 'w', 'A', '1'], ['rook', 'w', 'H', '1'],
+        ['rook', 'b', 'A', '8'], ['rook', 'b', 'H', '8'],
 
-        else if ((cell.dataset.col === 'A' || cell.dataset.col === 'H') && cell.dataset.row === '8' ) {
-            const img = document.createElement('img');
-            img.src = 'imgs/b_rook.png';
-            img.style.width = '75%';
-            img.style.height = '75%';
-            cell.appendChild(img);
-        }
+        ['knight', 'w', 'B', '1'], ['knight', 'w', 'G', '1'],
+        ['knight', 'b', 'B', '8'], ['knight', 'b', 'G', '8'],
 
-        else if ((cell.dataset.col === 'B' || cell.dataset.col === 'G') && cell.dataset.row === '1' ) {
-            const img = document.createElement('img');
-            img.src = 'imgs/w_knight.png';
-            img.style.width = '75%';
-            img.style.height = '75%';
-            cell.appendChild(img);
-        }
+        ['bishop', 'w', 'C', '1'], ['bishop', 'w', 'F', '1'],
+        ['bishop', 'b', 'C', '8'], ['bishop', 'b', 'F', '8'],
 
-        else if ((cell.dataset.col === 'B' || cell.dataset.col === 'G') && cell.dataset.row === '8' ) {
-            const img = document.createElement('img');
-            img.src = 'imgs/b_knight.png';
-            img.style.width = '75%';
-            img.style.height = '75%';
-            cell.appendChild(img);
-        }
+        ['queen', 'w', 'D', '1'], ['queen', 'b', 'D', '8'],
+        ['king',  'w', 'E', '1'], ['king',  'b', 'E', '8']
+    ];
 
-        else if ((cell.dataset.col === 'C' || cell.dataset.col === 'F') && cell.dataset.row === '1' ) {
-            const img = document.createElement('img');
-            img.src = 'imgs/w_bishop.png';
-            img.style.width = '75%';
-            img.style.height = '75%';
-            cell.appendChild(img);
-        }
+    // Add non-pawn
+    for (const [type, color, col, row] of pieces) {
+        addPiece(type, color, col, row);
+    }
 
-        else if ((cell.dataset.col === 'C' || cell.dataset.col === 'F') && cell.dataset.row === '8' ) {
-            const img = document.createElement('img');
-            img.src = 'imgs/b_bishop.png';
-            img.style.width = '75%';
-            img.style.height = '75%';
-            cell.appendChild(img);
-        }
+    // Add pawn
+    const cols = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+    for (const col of cols) {
+        addPiece('pawn', 'w', col, '2');
+        addPiece('pawn', 'b', col, '7');
+    }
 
-        else if (cell.dataset.row === '2' ) {
-            const img = document.createElement('img');
-            img.src = 'imgs/w_pawn.png';
-            img.style.width = '75%';
-            img.style.height = '75%';
-            cell.appendChild(img);
+    document.addEventListener('dragstart', function (e) {
+        if (e.target.tagName === 'IMG') {
+            e.dataTransfer.setData('text/plain', e.target.id);
         }
+    });
 
-        else if (cell.dataset.row === '7' ) {
-            const img = document.createElement('img');
-            img.src = 'imgs/b_pawn.png';
-            img.style.width = '75%';
-            img.style.height = '75%';
-            cell.appendChild(img);
+
+    document.addEventListener('dragover', function (e) {
+        if (e.target.classList.contains('cell') && !e.target.classList.contains('label')) {
+            e.preventDefault();
         }
+    });
 
-        else if ((cell.dataset.col === 'D') && cell.dataset.row === '1' ) {
-            const img = document.createElement('img');
-            img.src = 'imgs/w_queen.png';
-            img.style.width = '75%';
-            img.style.height = '75%';
-            img.draggable = true;
-            img.id = 'queenD1'
-            cell.appendChild(img);
-        }
 
-        else if ((cell.dataset.col === 'D') && cell.dataset.row === '8' ) {
-            const img = document.createElement('img');
-            img.src = 'imgs/b_queen.png';
-            img.style.width = '75%';
-            img.style.height = '75%';
-            img.draggable = true;
-            img.id = 'queenD8'
-            cell.appendChild(img);
-        }
-
-        else if ((cell.dataset.col === 'E') && cell.dataset.row === '1' ) {
-            const img = document.createElement('img');
-            img.src = 'imgs/w_king.png';
-            img.style.width = '75%';
-            img.style.height = '75%';
-            img.draggable = true;
-            img.id = 'kingE1'
-            cell.appendChild(img);
-        }
-
-        else if ((cell.dataset.col === 'E') && cell.dataset.row === '8' ) {
-            const img = document.createElement('img');
-            img.src = 'imgs/b_king.png';
-            img.style.width = '75%';
-            img.style.height = '75%';
-            img.draggable = true;
-            img.id = 'kingE8'
-            cell.appendChild(img);
+    document.addEventListener('drop', function (e) {
+        e.preventDefault();
+        const id = e.dataTransfer.getData('text');
+        const img = document.getElementById(id);
+        if (e.target.classList.contains('cell') && !e.target.classList.contains('label')) {
+            if (img && e.target !== img.parentNode) {
+                e.target.innerHTML = '';
+                e.target.appendChild(img);
+            }
         }
     });
 }
