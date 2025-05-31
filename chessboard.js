@@ -52,7 +52,7 @@ export class chessboard{
 export function isValidSquare(letter, number){
     if (letter <= 0 || letter > 8)
         return false;
-    else return !(number <= 0 || letter > 8);
+    else return !(number <= 0 || number > 8);
 }
 
 
