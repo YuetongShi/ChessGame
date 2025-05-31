@@ -7,10 +7,3 @@ document.addEventListener('DOMContentLoaded',function (){
     });
 });
 
-function openSetting(){
-    document.getElementById('popup-region').classList.remove('hidden');
-}
-
-function closeSetting(){
-    document.getElementById('popup-region').classList.add('hidden');
-}
