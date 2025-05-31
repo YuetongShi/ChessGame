@@ -3,17 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Sign in</title>
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Log in</h1>
-    <form>
-        <label>
-            <input type="text" name="username">
-        </label>
-        <label>
-            <input type="password" name="password">
-        </label>
-    </form>
-    <p>New player? Click to sign up</p>
+    <div id="logo-region">
+        <img src="logo/logo.png">
+    </div>
+        <form>
+            <h1>Log in</h1>
+            <br>
+            <label>
+                Username:
+                <input type="text" name="username">
+            </label>
+            <label>
+                Password:
+                <input type="password" name="password">
+            </label>
+            <p>New player? <a href="signup.html">Click to sign up</a></p>
+            <label>
+                <button type="submit">Log in</button>
+            </label>
+        </form>
 </body>
 </html>
