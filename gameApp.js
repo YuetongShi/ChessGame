@@ -122,13 +122,7 @@ function resetPiece(){
 
 function loadGame(){
     createBoard();
-    document.addEventListener('DOMContentLoaded', function (){
-        const param = new URLSearchParams(window.location.search);
-        const mode = param.get('mode');
-
-        if (mode === 'game')
-            resetPiece();
-    });
+    resetPiece();
 }
 
 loadGame();

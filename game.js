@@ -1,19 +1,13 @@
 import {chessboard, isValidSquare} from "./chessboard";
 import {Color} from "./piece";
 
-const Mode = {
-    game: 'game',
-    free: 'free'
-}
 export class game{
 
-    constructor(mode) {
+    constructor() {
         // mode is a Mode constant
         this.chessboard = new chessboard();
-        this.mode = mode;
         this.turn = Color.white;
-        if (this.mode === Mode.game)
-            this.chessboard.fillBoard();
+        this.chessboard.fillBoard();
     }
 
     isValidMove(letter, number, destLetter, destNumber){

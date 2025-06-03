@@ -74,7 +74,8 @@ export class Knight extends Piece{
     }
 
     canMove(destLetter, destNumber) {
-        super.canMove(destLetter, destNumber);
+        const letterDifference = Math.abs(destLetter - this.letter);
+        const numberDifference = Math.abs(destNumber - this.number);
     }
 }
 
