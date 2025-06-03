@@ -12,7 +12,7 @@ export class chessboard{
     }
 
     fillBoard(){
-        //the function resets all the pieces in a board for game mode
+        //the function resets all the pieces in a gameApp for game mode
         this.squares[0][0] = new Rook(Color.white, 1, 1, this); //A1
         this.squares[0][7] = new Rook(Color.white, 8, 1, this); //H1
         this.squares[7][0] = new Rook(Color.black, 1, 8, this); //A8
@@ -47,6 +47,33 @@ export class chessboard{
     //piece has type Piece
     this.squares[letter][number] = piece;
     }
+
+    getPieces(color){
+        // color is of type enum Color
+        let pieceStorage = [];
+
+        for(let i = 0; i < 8; i++){
+            for(let j = 0; j < 8; j++){
+                if (this.squares[i][j] != null){
+                    let tempColor = this.squares[i][j].color;
+                    if (tempColor === color)
+                    pieceStorage.push(this.squares[i][j])
+                }
+            }
+
+        }
+        return pieceStorage;
+    }
+
+    getKing(color){
+        const pieces = this.getPieces(color);
+
+        for(let i = 0; i < pieces.length; i++){
+            if (pieces[i] instanceof King)
+                return pieces[i]
+        }
+        return  null;
+    }
 }
 
 export function isValidSquare(letter, number){
@@ -54,6 +81,8 @@ export function isValidSquare(letter, number){
         return false;
     else return !(number <= 0 || number > 8);
 }
+
+
 
 
 

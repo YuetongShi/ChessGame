@@ -28,7 +28,7 @@ function createBoard(){
                 const index = 9 - row;
                 cell.textContent = index.toString();
             }
-            // checker board
+            // checker gameApp
             else{
                 const isWhite = (row + col) % 2 === 0;
                 if (isWhite)

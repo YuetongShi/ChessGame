@@ -18,15 +18,6 @@ class Piece{
         throw new Error("This function is used only for subclasses")
     }
 
-    moveTo(destLetter, destNumber){
-        //make sure the move is valid beforehand!
-        if (this.canMove(destLetter,destNumber)) {
-            this.letter = destLetter;
-            this.number = destNumber;
-            return true;
-        }
-        return false;
-    }
 
     removePiece(){
         this.letter = -1;
