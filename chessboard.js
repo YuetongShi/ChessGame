@@ -1,12 +1,12 @@
-import {Bishop, Color, King, Knight, Queen, Rook} from "./piece.js";
+import {Bishop, Color, King, Knight, Pawn, Queen, Rook} from "./piece.js";
 
 export class chessboard{
 
     constructor() {
         this.squares = [[],[],[],[],[],[],[],[]]; //element with type Piece
-        for (let item in this.squares){
-            for (let i = 0; i < 8; i++){
-                item.push(null);
+        for (let i = 0; i < 8; i++) {
+            for (let j = 0; j < 8; j++) {
+                this.squares[i].push(null);
             }
         }
     }
@@ -14,8 +14,8 @@ export class chessboard{
     fillBoard(){
         //the function resets all the pieces in a gameApp for game mode
         this.squares[0][0] = new Rook(Color.white, 1, 1, this); //A1
-        this.squares[0][7] = new Rook(Color.white, 8, 1, this); //H1
-        this.squares[7][0] = new Rook(Color.black, 1, 8, this); //A8
+        this.squares[0][7] = new Rook(Color.black, 8, 1, this); //A8
+        this.squares[7][0] = new Rook(Color.white, 1, 8, this); //H1
         this.squares[7][7] = new Rook(Color.black, 8, 8, this); //H8
 
         this.squares[3][0] = new Queen(Color.white, 4, 1, this); //D1
@@ -33,6 +33,14 @@ export class chessboard{
         this.squares[6][0] = new Knight(Color.white, 7, 1, this) //G1
         this.squares[1][7] = new Knight(Color.black, 2, 8, this) //B8
         this.squares[6][7] = new Knight(Color.black, 7, 8, this) //G8
+
+        for (let i = 0; i < 8; i++) {
+            this.squares[i][1] = new Pawn(Color.white, i + 1, 2, this); //white pawn
+        }
+
+        for (let i = 0; i < 8; i++) {
+            this.squares[i][6] = new Pawn(Color.white, i + 1, 2, this); //black pawn
+        }
     }
 
     isOccupied(letter, number){
@@ -45,7 +53,7 @@ export class chessboard{
 
     set(letter, number, piece){
     //piece has type Piece
-    this.squares[letter][number] = piece;
+    this.squares[letter - 1][number - 1] = piece;
     }
 
     getPieces(color){
