@@ -1,3 +1,5 @@
+import {game} from "./game.js"
+
 const board = document.getElementById('chessboard');
 const letters = [' ', 'A', 'B', 'C','D','E','F','G','H',' '];
 
@@ -123,6 +125,9 @@ function resetPiece(){
 function loadGame(){
     createBoard();
     resetPiece();
+    const game = new game();
+
+    const checkmate = false;
 }
 
 loadGame();

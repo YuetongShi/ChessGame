@@ -4,7 +4,6 @@ import {Color, Knight} from "./piece";
 export class game{
 
     constructor() {
-        // mode is a Mode constant
         this.chessboard = new chessboard();
         this.turn = Color.white;
         this.chessboard.fillBoard();
@@ -29,12 +28,20 @@ export class game{
             return false;
         else if (this.chessboard.get(destLetter, destNumber) != null)
             return this.chessboard.get(destLetter, destNumber).color !== piece.color;
-        //still need isInCheck here, make sure that the king of the same color is not in check
         return true;
     }
 
     isInCheck(color){
+        const king = this.chessboard.getKing(color);
+        const opponentColor = (color === Color.white) ? Color.black : Color.white;
+        //The color of the opponent side
+        const opponents = this.chessboard.getPieces(opponentColor);
 
+        for(let item in opponents){
+            if (item.canMove(king.letter, king.num))
+                return true;
+        }
+        return false;
     }
 
     isVisible(letter, number, destLetter, destNumber, piece){
@@ -76,7 +83,17 @@ export class game{
         return true;
     }
 
+    isCheckmate(){
+        //checkmate achieved for any
+    }
+
     moveTo(letter, number, destLetter, destNumber){
+        //IMPORTANT: make sure the move is valid beforehand!
+        const piece = this.chessboard.get(letter, number);
+
+        if (this.chessboard.isOccupied(destLetter, destNumber))
+            this.chessboard.get(destLetter, destNumber).removePiece();
 
     }
+
 }

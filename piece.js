@@ -1,4 +1,4 @@
-import {chessboard} from "./chessboard";
+import {chessboard} from "./chessboard.js";
 
 export const Color = {
     black: "black",
@@ -8,8 +8,8 @@ export const Color = {
 class Piece{
     constructor(color, letter, number, chessboard) {
         this.color = color; //enum, either black or white
-        this.letter = letter; //integer, 0 is A, 1 is B etc.
-        this.number = number; //integer, the index will be number + 1, for instance, a1 has letter = 0 and number = 0
+        this.letter = letter; //integer, 1 is A, 2 is B etc.
+        this.num = number; //integer, the index will be number, for instance, a1 has letter = 1 and number = 1
         this.board = chessboard //chessboard, remove if unused
     }
 
@@ -21,7 +21,7 @@ class Piece{
 
     removePiece(){
         this.letter = -1;
-        this.number = -1;
+        this.num = -1;
     }
 }
 
@@ -54,7 +54,7 @@ export class Rook extends Piece{
     }
 
     canMove(destLetter, destNumber) {
-        return (this.letter === destLetter || this.number === destNumber);
+        return (this.letter === destLetter || this.num === destNumber);
     }
 }
 
@@ -64,7 +64,7 @@ export class Bishop extends Piece{
     }
 
     canMove(destLetter, destNumber) {
-        return (Math.abs(this.letter - destLetter) === Math.abs(this.number  - destNumber));
+        return (Math.abs(this.letter - destLetter) === Math.abs(this.num  - destNumber));
     }
 }
 
@@ -75,7 +75,7 @@ export class Knight extends Piece{
 
     canMove(destLetter, destNumber) {
         const letterDifference = Math.abs(destLetter - this.letter);
-        const numberDifference = Math.abs(destNumber - this.number);
+        const numberDifference = Math.abs(destNumber - this.num);
     }
 }
 
@@ -90,7 +90,7 @@ export class Pawn extends Piece{
 
     promotion(target){
         //target is a piece
-        this.board.set(this.letter, this.number, target);
+        this.board.set(this.letter, this.num, target);
         this.removePiece();
     }
 }
