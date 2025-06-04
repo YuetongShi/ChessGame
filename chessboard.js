@@ -52,8 +52,12 @@ export class chessboard{
     }
 
     set(letter, number, piece){
-    //piece has type Piece
-    this.squares[letter - 1][number - 1] = piece;
+        //piece has type Piece
+        this.squares[letter - 1][number - 1] = piece;
+        if (piece != null){
+            piece.letter = letter;
+            piece.num = number;
+        }
     }
 
     getPieces(color){

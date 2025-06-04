@@ -88,12 +88,32 @@ export class game{
     }
 
     moveTo(letter, number, destLetter, destNumber){
+        //Return true if move is successful, false if not
+
         //IMPORTANT: make sure the move is valid beforehand!
+        if (!this.isValidMove(letter, number, destLetter, destNumber))
+            return false;
+
         const piece = this.chessboard.get(letter, number);
 
+        //To see whether an opponent piece is captured
+        let capture = null;
         if (this.chessboard.isOccupied(destLetter, destNumber))
-            this.chessboard.get(destLetter, destNumber).removePiece();
+            capture = this.chessboard.get(destLetter, destNumber).removePiece();
 
+        this.chessboard.set(destLetter, destNumber, piece);
+        this.chessboard.set(letter, number, null);
+
+        if (this.isInCheck(this.turn)){
+            //move is unsuccessful, undo move
+            this.chessboard.set(letter, number, piece);
+            this.chessboard.set(destLetter, destNumber, capture);
+            return false;
+        }
+
+        //run this part only if move is successful
+        this.turn = (this.turn === Color.white) ? Color.black : Color.white;
+        return true;
     }
 
 }

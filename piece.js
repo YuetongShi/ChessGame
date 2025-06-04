@@ -22,6 +22,7 @@ class Piece{
     removePiece(){
         this.letter = -1;
         this.num = -1;
+        return this;
     }
 }
 
