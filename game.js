@@ -87,21 +87,58 @@ export class game{
         return true;
     }
 
+    hasAvailableMove(){
+        //check whether there are available moves for the current turn
+        const pieces = this.chessboard.getPieces(this.turn);
+
+        for (const piece of pieces) {
+            for (let col = 1; col <= 8; col++) {
+                for (let row = 1; row <= 8; row++) {
+                    if (this.isValidMove(piece.letter, piece.num, col, row)) {
+                        return true;
+                }
+            }
+        }
+    }
+
+    return false;
+    }
+
     isCheckmate(){
-        //checkmate achieved for any color
-        if (!this.isInCheck(Color.white) && !this.isInCheck(Color.black))
-            return false;
-        //otherwise judge by moves
+        //checkmate achieved for current turn
+        if(this.isInCheck(this.turn) && !this.hasAvailableMove()){
+            this.checkmake = true;
+            return true;
+        }
+        return false;
     }
 
     isTie(){
         //achieves a tie, either repeated moves 3 times or no possible moves without in check
         //a tie due to repeating moves
-        if (this.lastSixRounds.length === 12){
-            //check duplicate
+        if (this.lastSixRounds.length === 12) {
+            if (
+                this.lastSixRounds[0] === this.lastSixRounds[4] &&
+                this.lastSixRounds[4] === this.lastSixRounds[8] &&
+                this.lastSixRounds[1] === this.lastSixRounds[5] &&
+                this.lastSixRounds[5] === this.lastSixRounds[9] &&
+                this.lastSixRounds[2] === this.lastSixRounds[6] &&
+                this.lastSixRounds[6] === this.lastSixRounds[10] &&
+                this.lastSixRounds[3] === this.lastSixRounds[7] &&
+                this.lastSixRounds[7] === this.lastSixRounds[11]
+            ) {
+                this.tie = true;
+                return true;
+            }
         }
 
-        //a forced tie
+        //a stalemate
+        if (!this.isInCheck(this.turn) && !this.hasAvailableMove()) {
+            this.tie = true;
+            return true;
+        }
+
+        return false;
     }
 
     tryMove(letter, number, destLetter, destNumber){

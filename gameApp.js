@@ -132,6 +132,4 @@ function loadGame(){
     */
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    loadGame();
-});
+loadGame();
