@@ -1,5 +1,3 @@
-import {game} from "./game.js"
-
 const board = document.getElementById('chessboard');
 const letters = [' ', 'A', 'B', 'C','D','E','F','G','H',' '];
 
@@ -126,7 +124,7 @@ function resetPiece(){
 function loadGame(){
     createBoard();
     resetPiece();
-    const newGame = new game();
+    //const newGame = new game();
 
    /* while (!game.checkmate && !game.tie){
       // detect drag and make movement here until a result comes out
@@ -134,4 +132,6 @@ function loadGame(){
     */
 }
 
-loadGame();
+document.addEventListener('DOMContentLoaded', () => {
+    loadGame();
+});
