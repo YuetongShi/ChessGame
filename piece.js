@@ -20,9 +20,9 @@ class Piece{
 
 
     removePiece(){
+        this.board.squares[this.letter - 1][this.num - 1] = null;
         this.letter = -1;
         this.num = -1;
-        this.board.squares[this.letter - 1][this.num - 1] = null;
         return this;
     }
 }

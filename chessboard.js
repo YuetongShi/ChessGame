@@ -39,7 +39,7 @@ export class chessboard{
         }
 
         for (let i = 0; i < 8; i++) {
-            this.squares[i][6] = new Pawn(Color.black, i + 1, 2, this); //black pawn
+            this.squares[i][6] = new Pawn(Color.black, i + 1, 7, this); //black pawn
         }
     }
 

@@ -41,8 +41,8 @@ export class game{
         //The color of the opponent side
         const opponents = this.chessboard.getPieces(opponentColor);
 
-        for(let item in opponents){
-            if (item.canMove(king.letter, king.num))
+        for (let i = 0; i < opponents.length; i++) {
+            if (opponents[i].canMove(king.letter, king.num))
                 return true;
         }
         return false;
@@ -103,8 +103,6 @@ export class game{
 
         //a forced tie
     }
-
-
 
     tryMove(letter, number, destLetter, destNumber){
         //Return true if move is successful, false if not, does not apply a real move
