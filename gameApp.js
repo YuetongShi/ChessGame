@@ -1,3 +1,8 @@
+import {Game} from "./game.js";
+import {King} from "./piece.js";
+import {Chessboard} from "./chessboard.js";
+
+
 const board = document.getElementById('chessboard');
 const letters = [' ', 'A', 'B', 'C','D','E','F','G','H',' '];
 
@@ -124,7 +129,7 @@ function resetPiece(){
 function loadGame(){
     createBoard();
     resetPiece();
-    //const newGame = new game();
+    const newGame = new Game();
 
    /* while (!game.checkmate && !game.tie){
       // detect drag and make movement here until a result comes out

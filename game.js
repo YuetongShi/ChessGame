@@ -1,11 +1,11 @@
-import {chessboard, isValidSquare} from "./chessboard";
-import {Color, Knight} from "./piece";
-import {toGridDataset} from "./gameApp"
+import {Chessboard, isValidSquare} from "./chessboard.js";
+import {Color, Knight} from "./piece.js";
+import {toGridDataset} from "./gameApp.js"
 
-export class game{
+export class Game{
 
     constructor() {
-        this.chessboard = new chessboard();
+        this.chessboard = new Chessboard();
         this.turn = Color.white;
         this.chessboard.fillBoard();
         this.checkmake = false;

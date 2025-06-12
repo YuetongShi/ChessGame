@@ -1,6 +1,6 @@
 import {Bishop, Color, King, Knight, Pawn, Queen, Rook} from "./piece.js";
 
-export class chessboard{
+export class Chessboard{
 
     constructor() {
         this.squares = [[],[],[],[],[],[],[],[]]; //element with type Piece

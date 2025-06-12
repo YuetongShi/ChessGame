@@ -1,4 +1,4 @@
-import {chessboard} from "./chessboard.js";
+import {Chessboard} from "./chessboard.js";
 
 export const Color = {
     black: "black",
@@ -14,7 +14,7 @@ class Piece{
     }
 
     canMove(destLetter, destNumber){
-        //piece.canMove only checks whether a piece can go there, use game.isValidMove to check backgrounds
+        //Piece.canMove only checks whether a piece can go there, use game.isValidMove to check backgrounds
         throw new Error("This function is used only for subclasses")
     }
 
