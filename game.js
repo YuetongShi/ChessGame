@@ -1,5 +1,6 @@
 import {chessboard, isValidSquare} from "./chessboard";
 import {Color, Knight} from "./piece";
+import {toGridDataset} from "./gameApp"
 
 export class game{
 
@@ -7,6 +8,9 @@ export class game{
         this.chessboard = new chessboard();
         this.turn = Color.white;
         this.chessboard.fillBoard();
+        this.checkmake = false;
+        this.tie = false;
+        this.lastSixRounds = [];
     }
 
     isValidMove(letter, number, destLetter, destNumber){
@@ -84,13 +88,28 @@ export class game{
     }
 
     isCheckmate(){
-        //checkmate achieved for any
+        //checkmate achieved for any color
+        if (!this.isInCheck(Color.white) && !this.isInCheck(Color.black))
+            return false;
+        //otherwise judge by moves
     }
 
-    moveTo(letter, number, destLetter, destNumber){
-        //Return true if move is successful, false if not
+    isTie(){
+        //achieves a tie, either repeated moves 3 times or no possible moves without in check
+        //a tie due to repeating moves
+        if (this.lastSixRounds.length === 12){
+            //check duplicate
+        }
 
-        //IMPORTANT: make sure the move is valid beforehand!
+        //a forced tie
+    }
+
+
+
+    tryMove(letter, number, destLetter, destNumber){
+        //Return true if move is successful, false if not, does not apply a real move
+
+        //IMPORTANT: make sure the move is valid beforehand
         if (!this.isValidMove(letter, number, destLetter, destNumber))
             return false;
 
@@ -111,9 +130,33 @@ export class game{
             return false;
         }
 
-        //run this part only if move is successful
-        this.turn = (this.turn === Color.white) ? Color.black : Color.white;
+        //also undo move even if move is successful
+        this.chessboard.set(letter, number, piece);
+        this.chessboard.set(destLetter, destNumber, capture);
         return true;
+    }
+
+    applyMove(letter, number, destLetter, destNumber){
+        if (!this.tryMove(letter, number, destLetter, destNumber)) {
+            //do nothing
+        }
+        else{
+            const piece = this.chessboard.get(letter, number);
+            const firstHalf = toGridDataset(letter, number).concat('-');
+            this.lastSixRounds.push(firstHalf.concat(toGridDataset(destLetter, destNumber)));
+            if (this.lastSixRounds.length === 13)
+                this.lastSixRounds.shift();
+
+            //To see whether an opponent piece is captured
+            let capture = null;
+            if (this.chessboard.isOccupied(destLetter, destNumber))
+            capture = this.chessboard.get(destLetter, destNumber).removePiece();
+
+            this.chessboard.set(destLetter, destNumber, piece);
+            this.chessboard.set(letter, number, null);
+
+            this.turn = (this.turn === Color.white) ? Color.black : Color.white;
+        }
     }
 
 }

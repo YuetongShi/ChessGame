@@ -22,6 +22,7 @@ class Piece{
     removePiece(){
         this.letter = -1;
         this.num = -1;
+        this.board.squares[this.letter - 1][this.num - 1] = null;
         return this;
     }
 }
@@ -77,6 +78,10 @@ export class Knight extends Piece{
     canMove(destLetter, destNumber) {
         const letterDifference = Math.abs(destLetter - this.letter);
         const numberDifference = Math.abs(destNumber - this.num);
+
+        if (letterDifference === 2 && numberDifference === 1)
+            return true;
+        else return letterDifference === 1 && numberDifference === 2;
     }
 }
 

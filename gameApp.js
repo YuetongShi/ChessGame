@@ -47,9 +47,10 @@ function createBoard(){
     }
 }
 
-function toGridDataset(letter, number){
+export function toGridDataset(letter, number){
     //parameters are backend numeric values, returned values are datasets of cell
-    return [letters[letter], number.toString()];
+    //(1, 1) turns to 'A1'
+    return letters[letter].concat(number.toString());
 }
 
 function addPiece(pieceName, colorCap, col, row) {
@@ -125,9 +126,12 @@ function resetPiece(){
 function loadGame(){
     createBoard();
     resetPiece();
-    const game = new game();
+    const newGame = new game();
 
-    const checkmate = false;
+   /* while (!game.checkmate && !game.tie){
+      // detect drag and make movement here until a result comes out
+    }
+    */
 }
 
 loadGame();
