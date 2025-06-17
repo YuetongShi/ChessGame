@@ -14,8 +14,8 @@ export class Chessboard{
     fillBoard(){
         //the function resets all the pieces in a gameApp for game mode
         this.squares[0][0] = new Rook(Color.white, 1, 1, this); //A1
-        this.squares[0][7] = new Rook(Color.black, 8, 1, this); //A8
-        this.squares[7][0] = new Rook(Color.white, 1, 8, this); //H1
+        this.squares[0][7] = new Rook(Color.black, 1, 8, this); //A8
+        this.squares[7][0] = new Rook(Color.white, 8, 1, this); //H1
         this.squares[7][7] = new Rook(Color.black, 8, 8, this); //H8
 
         this.squares[3][0] = new Queen(Color.white, 4, 1, this); //D1
